@@ -18,19 +18,19 @@ def cv_imread(file_path):
     return cv_img
 
 
-'''
-for size in [3,5,7,9,11,17]:
-    print(gausskernel(size))
-'''
+
+
+
 kernerl_size = [3,5,7,9,11,17]
 load_path = "GrayImages/GaussScale"
 save_path = "Result/GaussScale"
 
+for size in kernerl_size:
+    print(gausskernel(size))
 
 imgs_list = os.listdir(load_path)
-print(imgs_list)
+
 for img_name in imgs_list: # filter for each picture
-    print(img_name)
     img = cv_imread(load_path + "/" + img_name)
     cv2.imshow('pirate',img)
     for size in kernerl_size:           
