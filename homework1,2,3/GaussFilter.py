@@ -2,7 +2,7 @@ import math
 import cv2
 import numpy as np
 import os
-def gausskernel(size, sigma=1.0):
+def gausskernel(size, sigma=4.0):
     mid = int(size/2)
     gausskernel=np.zeros((size,size),np.float32)
     for i in range (size):
@@ -25,14 +25,18 @@ kernerl_size = [3,5,7,9,11,17]
 load_path = "GrayImages/GaussScale"
 save_path = "Result/GaussScale"
 
+np.set_printoptions(precision=5, suppress=True)
 for size in kernerl_size:
-    print(gausskernel(size))
+    tmp = gausskernel(size)
+    print("size: ",size)
+    print(tmp)
+    np.savetxt(str(size)+'.csv',tmp, delimiter=',')
 
 imgs_list = os.listdir(load_path)
 
 for img_name in imgs_list: # filter for each picture
     img = cv_imread(load_path + "/" + img_name)
-    cv2.imshow('pirate',img)
+    #cv2.imshow('pirate',img)
     for size in kernerl_size:           
         img = cv2.GaussianBlur(img,(size,size),0)
         cv2.imwrite(save_path + "/" + str(size)+"_" + img_name , img)

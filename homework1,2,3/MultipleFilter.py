@@ -30,14 +30,11 @@ for img_name in imgs_list: # filter for each picture
         cv2.imwrite(save_path + "/" + "Mean_" + str(size)+"_" + img_name , img_mean)
 
         # 高斯滤波
-        img_Guassian = cv2.GaussianBlur(img,(size,size),0)
+        img_Guassian = cv2.GaussianBlur(img,(size,size),5)
         cv2.imwrite(save_path + "/" + "Gausee_" + str(size)+"_" + img_name , img_Guassian)
 
         # 中值滤波
         img_median = cv2.medianBlur(img, size)
         cv2.imwrite(save_path + "/" + "Median_" + str(size)+"_" + img_name , img_median)
 
-        
-
-
-    
+           
